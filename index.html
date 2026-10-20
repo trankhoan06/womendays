@@ -1,271 +1,248 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="vi" data-theme="editorial">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Chúc Mừng Ngày Phụ Nữ Việt Nam 20/10 | Món Quà Yêu Thương</title>
+  <title>20.10 • Lời Chúc Dành Riêng Cho Bạn</title>
   
   <!-- SEO & Social Sharing OpenGraph Meta Tags -->
-  <meta name="description" content="Gửi tấm thiệp hoa nở kèm lời chúc 20/10 ý nghĩa, lãng mạn và tinh tế đến những người phụ nữ tuyệt vời nhất.">
-  <meta property="og:title" content="Món Quà 20/10 Dành Riêng Cho Bạn 🌸">
-  <meta property="og:description" content="Chạm để mở phong thư và đón nhận bó hoa tươi thắm cùng lời chúc 20/10 ngọt ngào nhất!">
+  <meta name="description" content="Tấm thiệp tối giản sang trọng dành tặng ngày Phụ Nữ Việt Nam 20.10. Cá nhân hóa tên và lời chúc sâu lắng.">
+  <meta property="og:title" content="20.10 • Món Quà Trao Gửi Yêu Thương">
+  <meta property="og:description" content="Chạm để mở thiệp chúc mừng thiết kế tinh tế với lời chúc sâu lắng dành riêng cho bạn.">
   <meta property="og:type" content="website">
-  <meta property="og:image" content="https://images.unsplash.com/photo-1518895949257-7621c3c786d7?auto=format&fit=crop&w=800&q=80">
-  <meta name="theme-color" content="#f472b6">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1518895949257-7621c3c786d7?auto=format&fit=crop&w=1200&h=630&q=80">
+  <meta name="theme-color" content="#FAF6F0">
 
-  <!-- Google Fonts: Dancing Script, Playfair Display, Be Vietnam Pro -->
+  <!-- Premium Editorial Fonts: Cormorant Garamond, Playfair Display, Be Vietnam Pro -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Dancing+Script:wght@600;700&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
   
-  <!-- html2canvas for card image download -->
+  <!-- html2canvas for story export -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- Canvas for Falling Petals and Fireworks -->
-  <canvas id="petalCanvas"></canvas>
-  <canvas id="fireworksCanvas"></canvas>
+  <!-- Ambient Canvas for Starlight / Dust Particles -->
+  <canvas id="ambientCanvas"></canvas>
 
-  <!-- Header Navigation -->
+  <!-- Ambient Audio Element -->
+  <audio id="bgMusic" loop preload="auto">
+    <source src="https://cdn.freesound.org/previews/612/612642_11861866-lq.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- Minimal Header -->
   <header class="app-header">
-    <div class="header-logo">
-      <span class="sparkle-icon">✨</span>
-      <span class="logo-text">20/10 Yêu Thương</span>
+    <div class="brand">
+      <span class="brand-monogram">20.10</span>
+      <span class="brand-sep">•</span>
+      <span class="brand-sub">Tôn Vinh Phụ Nữ Việt Nam</span>
     </div>
-    <div class="header-actions">
-      <button id="musicToggleBtn" class="music-btn" title="Bật/Tắt nhạc nền lãng mạn">
-        <span class="music-icon" id="musicIcon">🎵</span>
-        <span class="music-text">Nhạc</span>
-        <div class="sound-wave" id="soundWave">
-          <span></span><span></span><span></span><span></span>
-        </div>
+
+    <!-- Style Selector & Utility -->
+    <div class="header-controls">
+      <div class="theme-switcher" role="group" aria-label="Chọn phong cách">
+        <button class="theme-btn active" data-style="editorial" title="Phong cách Editorial sang trọng">Tạp chí</button>
+        <button class="theme-btn" data-style="apple" title="Phong cách Hiện đại mềm mại">Mềm mại</button>
+        <button class="theme-btn" data-style="cinematic" title="Phong cách Tối giản điện ảnh">Điện ảnh</button>
+      </div>
+
+      <button id="musicToggleBtn" class="audio-btn" aria-label="Bật/Tắt âm nhạc" title="Âm thanh êm dịu">
+        <svg class="audio-svg-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8">
+          <path d="M9 18V5l12-2v13"></path>
+          <circle cx="6" cy="18" r="3"></circle>
+          <circle cx="18" cy="16" r="3"></circle>
+        </svg>
       </button>
-      <button id="openCreatorBtn" class="btn-secondary-pill" title="Tạo thiệp mới để gửi tặng">
-        ✏️ Tạo thiệp
+
+      <button id="openCreatorBtn" class="btn-primary-minimal">
+        Tạo thiệp
       </button>
     </div>
   </header>
 
-  <main class="main-container">
+  <!-- Main Viewport -->
+  <main class="main-viewport">
+    
+    <!-- State 1: Minimalist Wax Envelope Invitation -->
+    <section id="envelopeStage" class="stage-section envelope-stage">
+      <div class="invitation-intro">
+        <span class="edition-label">SPECIAL EDITION • 20.10.2026</span>
+        <h1 class="invitation-title">Một món quà gửi trao sự dịu dàng</h1>
+        <p class="invitation-sub">Chạm nhẹ vào con dấu để mở thiệp</p>
+      </div>
 
-    <!-- ==================== VIEW 1: ENVELOPE & LETTER EXPERIENCE ==================== -->
-    <section id="cardViewSection" class="view-section active">
-      
-      <!-- Instructions / Envelope Teaser -->
-      <div id="envelopeWrapper" class="envelope-wrapper">
-        <div class="envelope-hint" id="envelopeHint">
-          <p class="pulse-text">💌 Chạm vào con dấu sáp đỏ để mở thư</p>
-        </div>
-
-        <!-- 3D Envelope -->
-        <div class="envelope-container" id="envelopeContainer">
-          <div class="envelope" id="envelope">
-            <div class="envelope-flap" id="envelopeFlap"></div>
-            <div class="envelope-paper-peek" id="paperPeek">
-              <span class="peek-text">20/10 Yêu Thương</span>
-            </div>
-            <div class="envelope-pocket"></div>
-            <div class="wax-seal" id="waxSeal" title="Nhấp để mở thư">
-              <div class="seal-inner">
-                <span class="seal-icon">🌸</span>
-                <span class="seal-label">20.10</span>
-              </div>
-            </div>
+      <div class="wax-seal-wrapper" id="sealTrigger" role="button" tabindex="0" aria-label="Mở thiệp">
+        <div class="seal-glow"></div>
+        <div class="wax-seal-stamp" id="waxSealStamp">
+          <div class="seal-border">
+            <span class="seal-text-top">VIETNAM WOMEN'S DAY</span>
+            <span class="seal-monogram">20•10</span>
+            <span class="seal-text-bot">POETRY & GRACE</span>
           </div>
         </div>
       </div>
+    </section>
 
-      <!-- Unfolded Presentation Card (Visible after opening) -->
-      <div id="cardContentWrapper" class="card-content-wrapper hidden">
+    <!-- State 2: The Haute Card Experience (Unveils smoothly) -->
+    <section id="cardStage" class="stage-section card-stage hidden">
+      
+      <!-- Top Action Toolbar -->
+      <div class="toolbar-actions">
+        <button id="cycleQuoteBtn" class="tool-btn" title="Xem một câu chúc sâu lắng khác">
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+          Đổi câu chúc
+        </button>
+        <button id="downloadStoryBtn" class="tool-btn highlight" title="Tải ảnh chuẩn kích thước Story 9:16">
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+          Lưu ảnh Story 9:16
+        </button>
+        <button id="copyShareBtn" class="tool-btn" title="Sao chép link chia sẻ gửi Zalo">
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"/></svg>
+          Sao chép link
+        </button>
+      </div>
+
+      <!-- The Editorial Luxury Card -->
+      <article class="editorial-card" id="editorialCard">
         
-        <div class="card-action-bar">
-          <button id="toggleFireworkBtn" class="action-btn firework-btn">
-            🎆 Bắn Pháo Hoa
-          </button>
-          <button id="changeFlowerBtn" class="action-btn flower-switch-btn">
-            💐 Tặng Thêm Hoa (<span id="currentFlowerName">Hồng Nhung</span>)
-          </button>
-          <button id="changeQuoteBtn" class="action-btn quote-switch-btn">
-            🔄 Đổi Lời Chúc Khác
-          </button>
-          <button id="downloadCardBtn" class="action-btn download-btn">
-            📸 Lưu Ảnh Thiệp
-          </button>
+        <!-- Subtle Top Metadata -->
+        <div class="card-meta-bar">
+          <span class="meta-item">N° 20.10</span>
+          <span class="meta-divider">—</span>
+          <span class="meta-item">HÀ NỘI / SÀI GÒN</span>
+          <span class="meta-divider">—</span>
+          <span class="meta-item" id="dateDisplay">20 THÁNG 10, 2026</span>
         </div>
 
-        <!-- The Printable / Capturable Greeting Card -->
-        <article class="greeting-card" id="greetingCard">
-          <div class="card-decor-corner corner-tl"></div>
-          <div class="card-decor-corner corner-tr"></div>
-          <div class="card-decor-corner corner-bl"></div>
-          <div class="card-decor-corner corner-br"></div>
-
-          <!-- Top Badge -->
-          <div class="card-badge">
-            <span class="badge-ribbon">Happy Vietnamese Women's Day • 20/10</span>
-          </div>
-
-          <!-- Visual Flower Area -->
-          <div class="flower-stage">
-            <div class="flower-glow"></div>
-            <div id="flowerContainer" class="flower-container">
-              <!-- SVG Flower inserted dynamically via JavaScript -->
-            </div>
-            <div class="flower-name-tag" id="flowerTag">Bó Hoa Tình Yêu & Tri Ân</div>
-          </div>
-
-          <!-- Card Letter Body -->
-          <div class="letter-body">
-            <div class="salutation-container">
-              <h2 class="salutation" id="recipientGreeting">Gửi Lan thân yêu,</h2>
-              <span class="role-chip" id="roleBadge">Người Yêu</span>
-            </div>
-
-            <div class="message-box">
-              <p class="typewriter-text" id="wishMessage">
-                Nhân ngày Phụ nữ Việt Nam 20/10, chúc bạn luôn xinh đẹp, rạng rỡ như những đóa hoa rực rỡ nhất...
-              </p>
-              <div class="typewriter-cursor" id="typeCursor"></div>
-            </div>
-
-            <!-- Signature & Date -->
-            <div class="card-footer">
-              <div class="signature-date">20 Tháng 10, 2026</div>
-              <div class="signature-sender">
-                <span class="with-love">Mãi yêu thương & trân quý</span>
-                <span class="sender-name" id="senderNameDisplay">Từ một người luôn dõi theo bạn 💖</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="card-watermark">womendays.vercel.app</div>
-        </article>
-
-        <!-- Share and Create Callout -->
-        <div class="share-box-section">
-          <h3>Tạo Link Gửi Tặng Người Này</h3>
-          <p class="share-desc">Sao chép đường link đã tạo sẵn tên và lời chúc để gửi trực tiếp qua Zalo, Messenger hoặc Facebook:</p>
-          <div class="share-link-group">
-            <input type="text" id="shareUrlInput" readonly value="">
-            <button id="copyShareLinkBtn" class="btn-primary">
-              📋 Sao Chép Link
-            </button>
-          </div>
-          <p id="copySuccessMsg" class="copy-success-text hidden">✓ Đã sao chép link vào clipboard! Hãy gửi ngay cho người ấy nhé.</p>
-          <button id="createNewCardBottomBtn" class="btn-secondary-pill w-full mt-3" style="width: 100%; justify-content: center; margin-top: 1rem; padding: 0.75rem;">
-            🌸 Tạo thiệp mới gửi tặng người khác
-          </button>
+        <!-- Line Art Flower Drawing (Animates on open) -->
+        <div class="line-art-flower-wrapper" id="flowerWrapper">
+          <svg class="line-art-svg" id="lineArtFlower" viewBox="0 0 160 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Elegant single-stem line art rose -->
+            <path class="draw-path stem-path" d="M80 75 C80 120 78 160 82 205" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+            <path class="draw-path leaf-left" d="M79 125 C62 118 58 106 63 97 C72 104 77 114 79 125 Z" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+            <path class="draw-path leaf-right" d="M80 148 C98 140 102 128 98 119 C88 126 83 137 80 148 Z" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+            <!-- Flower Head Petals (Minimal Contour) -->
+            <path class="draw-path petal-outer" d="M80 72 C62 70 54 48 68 34 C76 26 92 26 98 38 C104 50 96 68 80 72 Z" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+            <path class="draw-path petal-inner" d="M72 48 C68 40 76 34 83 34 C91 34 94 42 88 50 C82 56 75 54 72 48 Z" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+            <path class="draw-path petal-core" d="M78 42 C79 38 83 38 85 41 C86 44 82 46 80 44" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+          </svg>
         </div>
 
+        <!-- Typographic Main Composition -->
+        <div class="card-typography">
+          <div class="recipient-tag">GỬI ĐẾN</div>
+          <h2 class="recipient-name" id="cardRecipientName">Lan</h2>
+          
+          <div class="message-container">
+            <blockquote class="message-quote" id="cardWishMessage">
+              Giữa thế giới vội vã, sự dịu dàng và kiên định của em là điều quý giá nhất. Chúc em một ngày 20.10 an yên, tự do và luôn tỏa sáng theo cách của riêng mình.
+            </blockquote>
+          </div>
+
+          <div class="card-signoff">
+            <span class="signoff-note">Trân quý & Yêu thương,</span>
+            <span class="signoff-sender" id="cardSenderDisplay">Từ một người luôn dõi theo bạn</span>
+          </div>
+        </div>
+
+        <div class="card-footer-branding">
+          <span>HAUTE COUTURE EDITION</span>
+          <span class="bullet">•</span>
+          <span>VIETNAMESE WOMEN'S DAY</span>
+        </div>
+
+      </article>
+
+      <!-- Bottom Share Link Info -->
+      <div class="share-inline-bar">
+        <input type="text" id="shareUrlDisplay" readonly value="">
+        <button id="copyUrlBtn" class="btn-copy">Sao chép</button>
+      </div>
+
+      <div class="create-more-box">
+        <button id="createOtherBtn" class="btn-link-action">
+          Tạo tấm thiệp mang tên người khác →
+        </button>
       </div>
 
     </section>
 
-    <!-- ==================== VIEW 2: CARD CREATOR MODAL / DRAWER ==================== -->
-    <div id="creatorModal" class="modal-overlay hidden">
-      <div class="modal-card">
-        <div class="modal-header">
-          <h2>🌸 Tạo Thiệp 20/10 Cá Nhân Hóa</h2>
-          <button id="closeModalBtn" class="close-btn" aria-label="Đóng">&times;</button>
-        </div>
-        
-        <form id="cardCreatorForm" class="creator-form" onsubmit="return false;">
-          
-          <div class="form-group">
-            <label for="inputRecipientName">Tên người nhận <span class="req">*</span></label>
-            <input type="text" id="inputRecipientName" placeholder="Ví dụ: Lan, Mẹ yêu, Em Thảo, Cô Mai..." maxlength="30" required>
-            <span class="field-hint">Nhập tên bất kỳ. Nếu là tên bạn nam, hệ thống sẽ có lời chúc vui bất ngờ!</span>
-          </div>
-
-          <div class="form-group">
-            <label>Vai trò / Mối quan hệ</label>
-            <div class="role-selector-grid" id="roleSelector">
-              <label class="role-pill active">
-                <input type="radio" name="recipientRole" value="crush" checked>
-                <span>🌹 Người yêu / Vợ</span>
-              </label>
-              <label class="role-pill">
-                <input type="radio" name="recipientRole" value="mom">
-                <span>👵 Mẹ kính yêu</span>
-              </label>
-              <label class="role-pill">
-                <input type="radio" name="recipientRole" value="teacher">
-                <span>📚 Cô giáo</span>
-              </label>
-              <label class="role-pill">
-                <input type="radio" name="recipientRole" value="colleague">
-                <span>💼 Đồng nghiệp / Sếp</span>
-              </label>
-              <label class="role-pill">
-                <input type="radio" name="recipientRole" value="friend">
-                <span>✨ Bạn thân / Chị em</span>
-              </label>
-              <label class="role-pill">
-                <input type="radio" name="recipientRole" value="male">
-                <span>😄 Bạn nam (Troll vui)</span>
-              </label>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label>Chọn loài hoa đại diện</label>
-            <div class="flower-selector-grid" id="flowerSelector">
-              <label class="flower-pill active">
-                <input type="radio" name="flowerType" value="rose" checked>
-                <span class="flower-emoji">🌹</span>
-                <span class="flower-title">Hoa Hồng Đỏ</span>
-              </label>
-              <label class="flower-pill">
-                <input type="radio" name="flowerType" value="tulip">
-                <span class="flower-emoji">🌷</span>
-                <span class="flower-title">Hoa Tulip</span>
-              </label>
-              <label class="flower-pill">
-                <input type="radio" name="flowerType" value="daisy">
-                <span class="flower-emoji">🌼</span>
-                <span class="flower-title">Cúc Họa Mi</span>
-              </label>
-              <label class="flower-pill">
-                <input type="radio" name="flowerType" value="sunflower">
-                <span class="flower-emoji">🌻</span>
-                <span class="flower-title">Hướng Dương</span>
-              </label>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label for="inputCustomWish">Lời chúc riêng của bạn (Tùy chọn)</label>
-            <textarea id="inputCustomWish" rows="3" placeholder="Nhập lời chúc riêng của bạn tại đây... (Nếu để trống, hệ thống sẽ tự chọn lời chúc mẫu hay nhất theo vai trò)" maxlength="350"></textarea>
-            <span class="field-hint">Để trống nếu muốn dùng các lời chúc mẫu tự động có sẵn.</span>
-          </div>
-
-          <div class="form-group">
-            <label for="inputSenderName">Tên người gửi (Tùy chọn)</label>
-            <input type="text" id="inputSenderName" placeholder="Ví dụ: Hoàng, Con của Mẹ, Người ấy..." maxlength="30">
-          </div>
-
-          <div class="modal-footer">
-            <button type="button" id="previewCardBtn" class="btn-primary w-full">
-              ✨ Xem & Mở Thiệp Ngay
-            </button>
-          </div>
-
-        </form>
-      </div>
-    </div>
-
   </main>
 
-  <!-- Notification Toast -->
-  <div id="toastMessage" class="toast hidden"></div>
+  <!-- ================= CREATOR MODAL ================= -->
+  <div id="creatorModal" class="modal-backdrop hidden">
+    <div class="modal-container">
+      <div class="modal-head">
+        <span class="modal-sub">CÁ NHÂN HÓA THIỆP</span>
+        <h3 class="modal-title">Tạo Lời Chúc 20.10</h3>
+        <button id="closeModalBtn" class="modal-close" aria-label="Đóng">&times;</button>
+      </div>
 
-  <!-- Audio Element with Romantic Melody Fallback -->
-  <audio id="bgMusic" loop preload="auto">
-    <!-- Free creative commons soothing acoustic music stream -->
-    <source src="https://cdn.freesound.org/previews/612/612642_11861866-lq.mp3" type="audio/mpeg">
-  </audio>
+      <form id="cardForm" class="modal-form" onsubmit="return false;">
+        <div class="form-row">
+          <label for="inputName">Tên người nhận <span class="required">*</span></label>
+          <input type="text" id="inputName" placeholder="Ví dụ: Lan, Mẹ yêu, Em Thảo..." maxlength="30" required>
+        </div>
+
+        <div class="form-row">
+          <label>Vai trò / Mối quan hệ</label>
+          <div class="role-grid">
+            <button type="button" class="role-item active" data-role="crush">Người yêu / Vợ</button>
+            <button type="button" class="role-item" data-role="mom">Mẹ kính yêu</button>
+            <button type="button" class="role-item" data-role="teacher">Cô giáo</button>
+            <button type="button" class="role-item" data-role="colleague">Đồng nghiệp</button>
+            <button type="button" class="role-item" data-role="friend">Bạn thân</button>
+            <button type="button" class="role-item" data-role="male">Bạn nam</button>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <label for="inputWish">Lời chúc riêng (Tùy chọn)</label>
+          <textarea id="inputWish" rows="3" placeholder="Nhập lời chúc riêng của bạn... (Nếu để trống, hệ thống sẽ tự chọn câu văn giàu cảm xúc nhất)" maxlength="320"></textarea>
+          <span class="hint">Để trống để sử dụng lời chúc sâu sắc mặc định theo vai trò.</span>
+        </div>
+
+        <div class="form-row">
+          <label for="inputSender">Tên người gửi (Tùy chọn)</label>
+          <input type="text" id="inputSender" placeholder="Ví dụ: Hoàng, Con trai, Người thương..." maxlength="30">
+        </div>
+
+        <div class="modal-actions">
+          <button type="button" id="applyCardBtn" class="btn-submit">Hoàn tất & Mở thiệp</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="toast-pill hidden"></div>
+
+  <!-- Offscreen 9:16 Story Canvas Container for High-Res Story Export -->
+  <div id="storyRenderWrapper" class="story-render-wrapper">
+    <div class="story-card" id="storyCard">
+      <div class="story-border"></div>
+      <div class="story-meta">
+        <span>OCTOBER 20, 2026</span>
+        <span>•</span>
+        <span>SPECIAL EDITION</span>
+      </div>
+      <div class="story-flower" id="storyFlowerContainer">
+        <!-- Cloned line art flower inserted here -->
+      </div>
+      <div class="story-to">GỬI ĐẾN</div>
+      <h1 class="story-name" id="storyName">Lan</h1>
+      <p class="story-wish" id="storyWish">
+        Giữa thế giới vội vã, sự dịu dàng và kiên định của em là điều quý giá nhất. Chúc em một ngày 20.10 an yên, tự do và luôn tỏa sáng theo cách của riêng mình.
+      </p>
+      <div class="story-sender" id="storySender">
+        <span>Trân quý & Yêu thương</span>
+        <strong id="storySenderName">Từ một người luôn dõi theo bạn</strong>
+      </div>
+      <div class="story-watermark">20.10 • VIETNAMESE WOMEN'S DAY</div>
+    </div>
+  </div>
 
   <script src="app.js"></script>
 </body>
